@@ -1,13 +1,11 @@
-from django.urls import reverse_lazy
-from django.views.generic import UpdateView, ListView
-from django.views.generic import TemplateView
-
-from apps.models import User, Product
-from django.views.generic import TemplateView
-from apps.forms import RegisterForm, LoginForm
 from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView
+from django.views.generic import UpdateView, ListView
 
+from apps.forms import LoginForm
 from apps.forms import RegisterForm
+from apps.models import User, Product
 
 
 class RegisterPage(TemplateView):
@@ -41,6 +39,7 @@ class ProductListView(ListView):
         context = super().get_context_data(object_list=object_list, **kwargs)
         context['products'] = Product.objects.all()
         return context
+
 
 class LoginPageView(LoginView):
     form_class = LoginForm
