@@ -11,6 +11,7 @@ from apps.models import User, Product
 class RegisterPage(TemplateView):
     model = RegisterForm
     template_name = 'apps/register.html'
+    success_url = reverse_lazy('register_view')
 
 
 class ProfileSettingView(UpdateView):
@@ -56,3 +57,9 @@ class LoginPageView(LoginView):
 
     def form_invalid(self, form):
         return super().form_invalid(form)
+
+
+class indexListView(ListView):
+    queryset = Product.objects.first()
+    template_name = 'apps/index.html'
+    context_object_name = 'profile'
