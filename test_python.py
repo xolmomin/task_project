@@ -1,7 +1,3 @@
-
-
-
-
 # robiya toq sonlar fun_odd
 # akmalga 1-n gacha sonlarni print fun_print
 # hushnud ngacha bolgan sonlarni teskari chiqarsin
