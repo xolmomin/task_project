@@ -14,5 +14,6 @@ class Product(Model):
 class User(AbstractUser):
     email = EmailField(max_length=255, unique=True)
     phone = CharField(max_length=255, unique=True)
-    image = ImageField(upload_to='%m', null=True, blank=True, max_length=300)
+    image = ImageField(upload_to='%m', null=True, blank=True)
     biography = TextField(null=True, blank=True)
+    REQUIRED_FIELDS = ['email', 'password', 'phone']

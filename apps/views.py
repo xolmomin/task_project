@@ -34,9 +34,13 @@ class ProfileSettingView(UpdateView):
 class ProductListView(ListView):
     queryset = Product.objects.all()
     template_name = 'apps/product_list.html'
-    context_object_name = 'products'
+    paginate_by = 5
+    context_object_name = 'posts'
 
-
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        context['products'] = Product.objects.all()
+        return context
 
 class LoginPageView(LoginView):
     form_class = LoginForm
