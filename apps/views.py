@@ -57,3 +57,9 @@ class LoginPageView(LoginView):
 
     def form_invalid(self, form):
         return super().form_invalid(form)
+
+
+class indexListView(ListView):
+    queryset = Product.objects.first()
+    template_name = 'apps/index.html'
+    context_object_name = 'profile'
