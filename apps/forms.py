@@ -1,7 +1,5 @@
 from django.forms import ModelForm, CharField, EmailField
 
-from apps.models import User
-
 
 class RegisterForm(ModelForm):
     first_name = CharField(max_length=50)
@@ -10,6 +8,14 @@ class RegisterForm(ModelForm):
     email = EmailField(max_length=255)
 
 
+class LoginForm(ModelForm):
+    def clean_password(self):
+        username = self.cleaned_data['username']
+        password = self.cleaned_data['password']
+        user = User.objects.get(username=username)
+        if user and not user.check_password(password):
+            raise ValidationError('Please check Username or password !')
+        return password
 class EditProfile(ModelForm):
     class Meta:
         model = User
