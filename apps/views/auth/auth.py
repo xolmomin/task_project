@@ -6,7 +6,7 @@ from apps.forms import LoginForm
 
 class LoginPageView(LoginView):
     form_class = LoginForm
-    template_name = 'apps/auth/login_page.html'
+    template_name = 'apps/login_page.html'
     next_page = reverse_lazy('main_page_view')
 
     def get_context_data(self, **kwargs):

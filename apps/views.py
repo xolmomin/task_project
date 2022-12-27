@@ -18,19 +18,10 @@ class ProfileSettingView(UpdateView):
     template_name = 'apps/edit-profile.html'
     success_url = reverse_lazy('edit_profile_view')
 
-    def get_object(self, queryset=None):
-        return self.request.user
-
-    def form_valid(self, form):
-        return super().form_valid(form)
-
-    def form_invalid(self, form):
-        return super().form_invalid(form)
-
 
 class ProductListView(ListView):
     queryset = Product.objects.all()
-    template_name = 'product_list.html'
+    template_name = 'apps/product_list.html'
     paginate_by = 5
     context_object_name = 'posts'
 
