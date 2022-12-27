@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -54,6 +55,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'root.wsgi.application'
+AUTH_USER_MODEL = 'apps.User'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -98,6 +100,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR / 'static')
+
+MEDIA_URL = 'medias/'
+MEDIA_ROOT = os.path.join(BASE_DIR / 'medias')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
