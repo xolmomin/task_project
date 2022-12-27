@@ -19,3 +19,9 @@ class LoginForm(ModelForm):
         if user and not user.check_password(password):
             raise ValidationError('Please check Username or password !')
         return password
+
+
+class EditProfile(ModelForm):
+    class Meta:
+        model = User
+        fields = ('image', 'first_name', 'last_name', 'email', 'phone', 'biography')
