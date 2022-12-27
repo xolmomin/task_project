@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 
-from django.db.models import Model, CharField, TextField, ImageField, EmailField
+from django.db.models import Model, CharField, TextField, ImageField, EmailField, SlugField
+from django.utils.text import slugify
 
 
 class Product(Model):
@@ -8,6 +9,26 @@ class Product(Model):
     description = TextField()
     price = CharField(max_length=255)
     image = ImageField(upload_to='product/')
+    slug = SlugField(max_length=255)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+
+            while Product.objects.filter(slug=self.slug).exists():
+                slug = Product.objects.filter(slug=self.slug).first().slug
+                if '-' in slug:
+                    try:
+                        if slug.split('-')[-1] in self.name:
+                            self.slug += '-1'
+                        else:
+                            self.slug = '-'.join(slug.split('-')[:-1]) + '-' + str(int(slug.split('-')[-1]) + 1)
+                    except:
+                        self.slug = slug + '-1'
+                else:
+                    self.slug += '-1'
+
+            super().save(*args, **kwargs)
 
 
 class User(AbstractUser):
