@@ -9,13 +9,13 @@ from apps.forms import RegisterForm
 
 class RegisterPage(TemplateView):
     model = RegisterForm
-    template_name = 'register.html'
+    template_name = 'apps/register.html'
 
 
 class ProfileSettingView(UpdateView):
     form_class = UpdateView
     model = User
-    template_name = 'edit-profile.html'
+    template_name = 'apps/edit-profile.html'
     success_url = reverse_lazy('edit_profile_view')
 
     def get_object(self, queryset=None):
