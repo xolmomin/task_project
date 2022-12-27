@@ -1,10 +1,10 @@
+from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
+from django.views.generic import TemplateView
 from django.views.generic import UpdateView, ListView
 
+from apps.forms import RegisterForm, LoginForm
 from apps.models import User, Product
-from django.views.generic import TemplateView
-
-from apps.forms import RegisterForm
 
 
 class RegisterPage(TemplateView):
@@ -38,3 +38,20 @@ class ProductListView(ListView):
         context = super().get_context_data(object_list=object_list, **kwargs)
         context['products'] = Product.objects.all()
         return context
+
+
+class LoginPageView(LoginView):
+    form_class = LoginForm
+    template_name = 'apps/login_page.html'
+    next_page = reverse_lazy('main_page_view')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['forms'] = LoginForm
+        return context
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        return super().form_invalid(form)
