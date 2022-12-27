@@ -10,6 +10,7 @@ from apps.forms import RegisterForm
 class RegisterPage(TemplateView):
     model = RegisterForm
     template_name = 'apps/register.html'
+    success_url = reverse_lazy('register_view')
 
 
 class ProfileSettingView(UpdateView):
