@@ -4,5 +4,5 @@ from apps.forms import RegisterForm
 
 
 class RegisterPage(TemplateView):
-    model = RegisterForm
-    template_name =
+    form_class = RegisterForm
+    template_name = 'apps/register.html'
