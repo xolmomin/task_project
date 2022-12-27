@@ -30,7 +30,7 @@ class ProfileSettingView(UpdateView):
 
 class ProductListView(ListView):
     queryset = Product.objects.all()
-    template_name = 'apps/product_list.html'
+    template_name = 'product_list.html'
     paginate_by = 5
     context_object_name = 'posts'
 
