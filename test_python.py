@@ -6,3 +6,7 @@
 # adhamjonga juft sonlar fun_even
 
 
+def fun_odd(nums):
+    return [i for i in nums if i & 1]
+
+
