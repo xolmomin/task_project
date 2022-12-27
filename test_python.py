@@ -5,6 +5,10 @@
 # adhamjonga juft sonlar fun_even
 
 
+def fun_print(n):
+    return [i for i in range(1, n + 1)]
+
+
 def fun_odd(nums):
     return [i for i in nums if i & 1]
 
